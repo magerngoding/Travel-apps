@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:travel_apps/shared/theme.dart';
+import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 
 class BonusPage extends StatelessWidget {
   const BonusPage({super.key});
@@ -114,26 +115,13 @@ class BonusPage extends StatelessWidget {
     }
 
     Widget startButtom() {
-      return Container(
+      return CustomeButton(
+        title: 'Start Fly Now',
         width: 220,
-        height: 55,
         margin: EdgeInsets.only(top: 50),
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: kPurpleColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(defaultRadius),
-            ),
-          ),
-          onPressed: () {},
-          child: Text(
-            'Style Fly Now',
-            style: whiteTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: medium,
-            ),
-          ),
-        ),
+        onPressed: () {
+          Navigator.pushNamed(context, '/main');
+        },
       );
     }
 

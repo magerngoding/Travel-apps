@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:travel_apps/shared/theme.dart';
+import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -41,27 +42,14 @@ class GetStartedPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                Container(
+                CustomeButton(
+                  title: 'Get Started',
                   width: 220,
-                  height: 55,
                   margin: EdgeInsets.only(top: 50, bottom: 80),
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: kPurpleColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(defaultRadius),
-                          )),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/sign-up');
-                      },
-                      child: Text(
-                        'Get Started',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: medium,
-                        ),
-                      )),
-                )
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/sign-up');
+                  },
+                ),
               ],
             ),
           )
