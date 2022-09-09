@@ -28,7 +28,7 @@ class CustomeButton extends StatelessWidget {
             )),
         onPressed: onPressed,
         child: Text(
-          'Get Started',
+          title,
           style: whiteTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
