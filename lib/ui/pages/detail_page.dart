@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:travel_apps/shared/theme.dart';
-import 'package:travel_apps/ui/pages/choose_page.dart';
+import 'package:travel_apps/ui/pages/choose_seat_page.dart';
 import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 import 'package:travel_apps/ui/pages/widget/interest_item.dart';
 import 'package:travel_apps/ui/pages/widget/photo_item.dart';

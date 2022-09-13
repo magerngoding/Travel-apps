@@ -8,7 +8,7 @@ import 'package:travel_apps/ui/pages/widget/custom_bottom_navigation.dart';
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
-  WidetBuildContent() {
+  WidgetBuildContent() {
     return HomePage();
   }
 
@@ -53,7 +53,7 @@ class MainPage extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
-          WidetBuildContent(),
+          WidgetBuildContent(),
           customBottomNavigation(),
         ],
       ),
