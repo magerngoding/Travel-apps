@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:travel_apps/shared/theme.dart';
 import 'package:travel_apps/ui/pages/home_page.dart';
+import 'package:travel_apps/ui/pages/setting_page.dart';
+import 'package:travel_apps/ui/pages/transaction_page.dart';
+import 'package:travel_apps/ui/pages/wallet_page.dart';
 import 'package:travel_apps/ui/pages/widget/custom_bottom_navigation.dart';
 
 class MainPage extends StatelessWidget {
@@ -14,6 +17,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     Widget customBottomNavigation() {
       return Align(
         alignment: Alignment.bottomCenter,
