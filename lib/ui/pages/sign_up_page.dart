@@ -6,7 +6,12 @@ import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 import 'package:travel_apps/ui/pages/widget/custome_text_form_field.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+  SignUpPage({super.key});
+
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +31,14 @@ class SignUpPage extends StatelessWidget {
     Widget inputSection() {
       Widget nameInput() {
         return CustomeTextFormField(
-            title: 'Full Name', hintText: 'Your Full Name');
+            controller: nameController,
+            title: 'Full Name',
+            hintText: 'Your Full Name');
       }
 
       Widget emailInput() {
         return CustomeTextFormField(
+          controller: emailController,
           title: 'Email Address',
           hintText: 'Your Email Address',
         );
@@ -38,6 +46,7 @@ class SignUpPage extends StatelessWidget {
 
       Widget passwordInput() {
         return CustomeTextFormField(
+          controller: passwordController,
           title: 'Password',
           hintText: 'Your Password',
           obscureText: true,
@@ -46,6 +55,7 @@ class SignUpPage extends StatelessWidget {
 
       Widget hobbyInput() {
         return CustomeTextFormField(
+          controller: hobbyController,
           title: 'Hobby',
           hintText: 'Your Hobby',
         );

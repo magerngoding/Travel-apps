@@ -5,11 +5,13 @@ class CustomeTextFormField extends StatelessWidget {
   final String title;
   final String hintText;
   final bool obscureText;
+  final TextEditingController controller;
 
   CustomeTextFormField({
     required this.title,
     required this.hintText,
     this.obscureText = false,
+    required this.controller,
   });
 
   @override
