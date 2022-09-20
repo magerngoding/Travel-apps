@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_apps/cubit/auth_cubit.dart';
 import 'package:travel_apps/shared/theme.dart';
 import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 import 'package:travel_apps/ui/pages/widget/custome_text_form_field.dart';
@@ -8,10 +10,11 @@ import 'package:travel_apps/ui/pages/widget/custome_text_form_field.dart';
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
 
-  TextEditingController nameController = TextEditingController(text: '');
-  TextEditingController emailController = TextEditingController(text: '');
-  TextEditingController passwordController = TextEditingController(text: '');
-  TextEditingController hobbyController = TextEditingController(text: '');
+  final TextEditingController nameController = TextEditingController(text: '');
+  final TextEditingController emailController = TextEditingController(text: '');
+  final TextEditingController passwordController =
+      TextEditingController(text: '');
+  final TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +65,38 @@ class SignUpPage extends StatelessWidget {
       }
 
       Widget submitButton() {
-        return CustomeButton(
-          title: 'Get Started',
-          onPressed: () {
-            Navigator.pushNamed(context, '/bonus');
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthSuccess) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/bonus', (route) => false);
+            } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(state.erorr),
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return CustomeButton(
+              title: 'Get Started',
+              onPressed: () {
+                context.read<AuthCubit>().signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      name: nameController.text,
+                      hobby: hobbyController.text,
+                    );
+              },
+            );
           },
         );
       }

@@ -37,7 +37,7 @@ class MainPage extends StatelessWidget {
         child: Container(
           width: double.infinity,
           margin: EdgeInsets.only(
-            bottom: 30,
+            bottom: 5,
             left: defaultMargin,
             right: defaultMargin,
           ),
