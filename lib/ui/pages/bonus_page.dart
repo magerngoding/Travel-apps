@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_apps/cubit/auth_cubit.dart';
 import 'package:travel_apps/shared/theme.dart';
 import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 
@@ -10,80 +12,89 @@ class BonusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget bonusCard() {
-      return Container(
-        width: 300,
-        height: 211,
-        padding: EdgeInsets.all(defaultMargin),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/image_card.png'),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: kPurpleColor.withOpacity(0.5),
-              blurRadius: 50,
-              offset: Offset(0, 10),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Container(
+              width: 300,
+              height: 211,
+              padding: EdgeInsets.all(defaultMargin),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/image_card.png'),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: kPurpleColor.withOpacity(0.5),
+                    blurRadius: 50,
+                    offset: Offset(0, 10),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Text(
-                        'Name',
-                        style: whiteTextStyle.copyWith(
-                          fontWeight: light,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name',
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: light,
+                              ),
+                            ),
+                            Text(
+                              state.user.name,
+                              style: whiteTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: medium,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 24,
+                        height: 24,
+                        margin: EdgeInsets.only(right: 6),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/icon_plane.png'),
+                          ),
                         ),
                       ),
                       Text(
-                        'Siraj Hafizh',
+                        'Pay',
                         style: whiteTextStyle.copyWith(
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: medium,
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                ),
-                Container(
-                  width: 24,
-                  height: 24,
-                  margin: EdgeInsets.only(right: 6),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/icon_plane.png'),
-                    ),
+                  SizedBox(
+                    height: 41,
                   ),
-                ),
-                Text(
-                  'Pay',
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
+                  Text(
+                    'Balance',
+                    style: whiteTextStyle.copyWith(fontWeight: light),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 41,
-            ),
-            Text(
-              'Balance',
-              style: whiteTextStyle.copyWith(fontWeight: light),
-            ),
-            Text(
-              'IDR 200.000.000',
-              style: whiteTextStyle.copyWith(fontSize: 26, fontWeight: medium),
-            ),
-          ],
-        ),
+                  Text(
+                    'IDR 200.000.000',
+                    style: whiteTextStyle.copyWith(
+                        fontSize: 26, fontWeight: medium),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return SizedBox();
+          }
+        },
       );
     }
 

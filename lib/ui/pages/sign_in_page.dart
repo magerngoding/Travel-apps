@@ -7,14 +7,12 @@ import 'package:travel_apps/shared/theme.dart';
 import 'package:travel_apps/ui/pages/widget/custom_button.dart';
 import 'package:travel_apps/ui/pages/widget/custome_text_form_field.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  SignInPage({super.key});
 
-  final TextEditingController nameController = TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController passwordController =
       TextEditingController(text: '');
-  final TextEditingController hobbyController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,7 @@ class SignUpPage extends StatelessWidget {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Text(
-          'Join us and get\n your next journey',
+          'Sign In with your existing account',
           style: blackTextStyle.copyWith(
             fontSize: 24,
             fontWeight: semiBold,
@@ -32,13 +30,6 @@ class SignUpPage extends StatelessWidget {
     }
 
     Widget inputSection() {
-      Widget nameInput() {
-        return CustomeTextFormField(
-            controller: nameController,
-            title: 'Full Name',
-            hintText: 'Your Full Name');
-      }
-
       Widget emailInput() {
         return CustomeTextFormField(
           controller: emailController,
@@ -56,20 +47,12 @@ class SignUpPage extends StatelessWidget {
         );
       }
 
-      Widget hobbyInput() {
-        return CustomeTextFormField(
-          controller: hobbyController,
-          title: 'Hobby',
-          hintText: 'Your Hobby',
-        );
-      }
-
       Widget submitButton() {
         return BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/bonus', (route) => false);
+                  context, '/main', (route) => false);
             } else if (state is AuthFailed) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -87,13 +70,11 @@ class SignUpPage extends StatelessWidget {
             }
 
             return CustomeButton(
-              title: 'Get Started',
+              title: 'Sign In',
               onPressed: () {
-                context.read<AuthCubit>().signUp(
+                context.read<AuthCubit>().signIn(
                       email: emailController.text,
                       password: passwordController.text,
-                      name: nameController.text,
-                      hobby: hobbyController.text,
                     );
               },
             );
@@ -102,7 +83,7 @@ class SignUpPage extends StatelessWidget {
       }
 
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 0),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         decoration: BoxDecoration(
           color: kWhiteColor,
@@ -110,20 +91,18 @@ class SignUpPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            nameInput(),
             emailInput(),
             passwordInput(),
-            hobbyInput(),
             submitButton(),
           ],
         ),
       );
     }
 
-    Widget signInButton() {
+    Widget tacButton() {
       return GestureDetector(
         onTap: () {
-          Navigator.popAndPushNamed(context, '/sign-in');
+          Navigator.popAndPushNamed(context, '/sign-up');
         },
         child: Container(
           alignment: Alignment.center,
@@ -132,7 +111,7 @@ class SignUpPage extends StatelessWidget {
             bottom: 50,
           ),
           child: Text(
-            'Have an account? Sign In',
+            'Don\'t have an account? Sign Up',
             style: greyTextStyle.copyWith(
               fontSize: 16,
               fontWeight: light,
@@ -151,7 +130,7 @@ class SignUpPage extends StatelessWidget {
           children: [
             title(),
             inputSection(),
-            signInButton(),
+            tacButton(),
           ],
         ),
       ),
