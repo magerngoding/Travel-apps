@@ -170,8 +170,14 @@ class ChoosePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SeatItem(status: 2),
-                  SeatItem(status: 2),
+                  SeatItem(
+                    id: 'A1',
+                    isAvailable: false,
+                  ),
+                  SeatItem(
+                    id: 'B1',
+                    isAvailable: false,
+                  ),
                   Container(
                     width: 48,
                     height: 48,
@@ -184,8 +190,12 @@ class ChoosePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SeatItem(status: 0),
-                  SeatItem(status: 2),
+                  SeatItem(
+                    id: 'C1',
+                  ),
+                  SeatItem(
+                    id: 'D1',
+                  ),
                 ],
               ),
             ),
@@ -194,8 +204,12 @@ class ChoosePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SeatItem(status: 0),
-                  SeatItem(status: 0),
+                  SeatItem(
+                    id: 'A2',
+                  ),
+                  SeatItem(
+                    id: 'B2',
+                  ),
                   Container(
                     width: 48,
                     height: 48,
@@ -208,8 +222,12 @@ class ChoosePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SeatItem(status: 0),
-                  SeatItem(status: 2),
+                  SeatItem(
+                    id: 'C2',
+                  ),
+                  SeatItem(
+                    id: 'D2',
+                  ),
                 ],
               ),
             ),
@@ -218,22 +236,30 @@ class ChoosePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SeatItem(status: 1),
-                  SeatItem(status: 1),
+                  SeatItem(
+                    id: 'A3',
+                  ),
+                  SeatItem(
+                    id: 'B3',
+                  ),
                   Container(
                     width: 48,
                     height: 48,
                     child: Center(
                       child: Text(
-                        '3',
+                        '2',
                         style: greyTextStyle.copyWith(
                           fontSize: 16,
                         ),
                       ),
                     ),
                   ),
-                  SeatItem(status: 0),
-                  SeatItem(status: 0),
+                  SeatItem(
+                    id: 'C3',
+                  ),
+                  SeatItem(
+                    id: 'D3',
+                  ),
                 ],
               ),
             ),
@@ -242,22 +268,30 @@ class ChoosePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SeatItem(status: 0),
-                  SeatItem(status: 2),
+                  SeatItem(
+                    id: 'A4',
+                  ),
+                  SeatItem(
+                    id: 'B4',
+                  ),
                   Container(
                     width: 48,
                     height: 48,
                     child: Center(
                       child: Text(
-                        '4',
+                        '2',
                         style: greyTextStyle.copyWith(
                           fontSize: 16,
                         ),
                       ),
                     ),
                   ),
-                  SeatItem(status: 0),
-                  SeatItem(status: 0),
+                  SeatItem(
+                    id: 'C4',
+                  ),
+                  SeatItem(
+                    id: 'D4',
+                  ),
                 ],
               ),
             ),
@@ -266,22 +300,30 @@ class ChoosePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SeatItem(status: 0),
-                  SeatItem(status: 0),
+                  SeatItem(
+                    id: 'A5',
+                  ),
+                  SeatItem(
+                    id: 'B5',
+                  ),
                   Container(
                     width: 48,
                     height: 48,
                     child: Center(
                       child: Text(
-                        '5',
+                        '2',
                         style: greyTextStyle.copyWith(
                           fontSize: 16,
                         ),
                       ),
                     ),
                   ),
-                  SeatItem(status: 2),
-                  SeatItem(status: 0),
+                  SeatItem(
+                    id: 'C5',
+                  ),
+                  SeatItem(
+                    id: 'D5',
+                  ),
                 ],
               ),
             ),
