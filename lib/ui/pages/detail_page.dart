@@ -50,6 +50,7 @@ class DetailPage extends StatelessWidget {
     Widget content() {
       return Container(
         width: double.infinity,
+        // Biar kedalem
         margin: EdgeInsets.symmetric(
           horizontal: defaultMargin,
         ),
@@ -250,7 +251,7 @@ class DetailPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ChoosePage(),
+                          builder: (context) => ChooseSeatPage(destination),
                         ),
                       );
                     },

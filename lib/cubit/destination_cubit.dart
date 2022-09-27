@@ -19,9 +19,7 @@ class DestinationCubit extends Cubit<DestinationState> {
 
       emit(DestinationSuccess(destinations));
     } catch (e) {
-      emit(DestinationFailed(
-        e.toString(),
-      ));
+      emit(DestinationFailed(e.toString()));
     }
   }
 }
