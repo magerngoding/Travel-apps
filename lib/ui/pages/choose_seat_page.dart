@@ -409,7 +409,7 @@ class ChooseSeatPage extends StatelessWidget {
                     TransactionModel(
                       destination: destination,
                       amountOfTraveler: state.length,
-                      selectedSeat: state.join(', '),
+                      selectedSeats: state.join(', '),
                       insurance: true,
                       refundable: false,
                       vat: 0.45,

@@ -5,12 +5,12 @@ import 'package:travel_apps/models/destination_model.dart';
 
 // BIKIN TABLE
 class DestinationService {
-  CollectionReference _destinationRef =
+  CollectionReference _destinationReference =
       FirebaseFirestore.instance.collection('destinations');
 
   Future<List<DestinationModel>> fetchDestinations() async {
     try {
-      QuerySnapshot result = await _destinationRef.get();
+      QuerySnapshot result = await _destinationReference.get();
 
       List<DestinationModel> destinations = result.docs.map(
         (e) {

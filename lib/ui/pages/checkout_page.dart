@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:travel_apps/cubit/auth_cubit.dart';
+import 'package:travel_apps/cubit/transaction_cubit.dart';
 import 'package:travel_apps/models/transaction_model.dart';
 import 'package:travel_apps/shared/theme.dart';
 import 'package:travel_apps/ui/pages/success_checkout_page.dart';
@@ -179,7 +180,7 @@ class CheckOutPage extends StatelessWidget {
             ),
             BookingDetailItem(
               title: 'Seat',
-              valueText: '${transaction.selectedSeat}',
+              valueText: '${transaction.selectedSeats}',
               valueColor: kBlackColor,
             ),
             BookingDetailItem(
@@ -332,17 +333,36 @@ class CheckOutPage extends StatelessWidget {
     }
 
     Widget payNowButton() {
-      return CustomeButton(
-        title: 'Pay Now',
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SuccessCheckoutPage(),
-            ),
+      return BlocConsumer<TransactionCubit, TransactionState>(
+        listener: (context, state) {
+          if (state is TransactionSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/success', (route) => false);
+          } else if (state is TransactionFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.red,
+                content: Text(state.erorr),
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is TransactionLoading) {
+            return Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 30),
+              child: CircularProgressIndicator(),
+            );
+          }
+          return CustomeButton(
+            title: 'Pay Now',
+            onPressed: () {
+              context.read<TransactionCubit>().createTransaction(transaction);
+            },
+            margin: EdgeInsets.only(top: 30),
           );
         },
-        margin: EdgeInsets.only(top: 30),
       );
     }
 
